@@ -3,9 +3,9 @@
 
   <h1>あなたのタスク一覧</h1>
 
-  <ul>
+  <ul class="list-unstyled">
     <% @tasks.each do |task| %>
-      <li><%= link_to task.id, task %> : &lt; <%= task.status %> &gt; <%= task.content %></li>
+      <li> &lt; <%= link_to task.status, task %> &gt; <%= task.content %></li>
     <% end %>
   </ul>
   
