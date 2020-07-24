@@ -1,9 +1,23 @@
-<h1>タスク一覧</h1>
+<% if logged_in? %>
+  <p>ようこそ<%= current_user.name %>さん</p>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %> : &lt; <%= task.status %> &gt; <%= task.content %></li>
-  <% end %>
-</ul>
+  <h1>あなたのタスク一覧</h1>
 
-<%= link_to '新規タスクの登録', new_task_path %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><%= link_to task.id, task %> : &lt; <%= task.status %> &gt; <%= task.content %></li>
+    <% end %>
+  </ul>
+  
+  <%= link_to '新規タスクの登録', new_task_path, class: 'btn btn-lg btn-primary' %>
+
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>タスク管理アプリにようこそ</h1>
+      <%= link_to '新規ユーザー登録', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+

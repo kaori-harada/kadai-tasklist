@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :require_user_logged_in, only: [:index, :show, :edit]
+  
   def index
     @tasks = Task.all
   end
@@ -47,12 +49,19 @@ class TasksController < ApplicationController
     flash[:success] = 'タスクは正常に削除されました'
     redirect_to tasks_url
   end
+
   
   private
+  
+  def require_user_logged_in
+    unless logged_in?
+      redirect_to login_url
+    end
+  end
   
   # Strong Parameter
   def task_params
     params.require(:task).permit(:status, :content)
   end
-  
+
 end
