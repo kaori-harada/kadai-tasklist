@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
     @user = User.new
   end
@@ -21,14 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    
-    flash[:success] = 'ユーザーは正常に削除されました。'
-    redirect_to root_url
-    
-  end
 end
 
   private
